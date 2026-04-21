@@ -7,13 +7,15 @@
 0. Obtain at least two ESP32-C3 boards from Espressif
 1. Clone this repository recursively (`git clone --recurse-submodules`
 2. (needed only once) Install ESP IDF: `idf/install.sh`
-3. (needed every time you open a new terminal): Activate ESP IDF: `source idf/export.sh`
-4. Install necessary host-side packages: `pip install pyserial matplotlib`
+3. Install necessary host-side packages: `pip install pyserial matplotlib`
+4. (needed every time you open a new terminal): Activate ESP IDF: `source idf/export.sh`
 
 ### Live demo for "Authenticated Party Presence" protocol
 
 5. Flash the ESP-side application onto two ESP-32C3's: `cd esp-side/n-party-presence && idf.py flash /dev/ttyYOUR_FIRST_ESP_UART && idf.py flash /dev/ttyYOUR_SECOND_ESP_UART`
 6. Run host-side live demo application - only one ESP needs to be connected to your host: `cd host-side && python3 n-party-presence.py /dev/ttyYOUR_ESP_UART SOME_LOGFILE_SUFFIX`
+
+Note that when increasing physical distance between the ESPs, it'll take up to 30 seconds for that to be reflected in the shown graph, due to the evaluation logic as described in our paper.
 
 ### Live demo visualizing unfiltered data
 
