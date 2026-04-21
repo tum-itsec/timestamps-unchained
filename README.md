@@ -1,5 +1,25 @@
 # Accompanying code for paper "Timestamps Unchained"
 
+## Quickstart
+
+### Setup
+
+0. Obtain at least two ESP32-C3 boards from Espressif
+1. Clone this repository recursively (`git clone --recurse-submodules`
+2. (needed only once) Install ESP IDF: `idf/install.sh`
+3. (needed every time you open a new terminal): Activate ESP IDF: `source idf/export.sh`
+4. Install necessary host-side packages: `pip install pyserial matplotlib`
+
+### Live demo for "Authenticated Party Presence" protocol
+
+4. Flash the ESP-side application onto two ESP-32C3's: `cd esp-side/n-party-presence && idf.py flash /dev/ttyYOUR_FIRST_ESP_UART && idf.py flash /dev/ttyYOUR_SECOND_ESP_UART`
+5. Run host-side live demo application - only one ESP needs to be connected to your host: `cd host-side && python3 n-party-presence.py /dev/ttyYOUR_ESP_UART SOME_LOGFILE_SUFFIX`
+
+### Live demo visualizing unfiltered data
+
+4. Flash the ESP-side application onto two ESP-32C3's: `cd esp-side/generic-eval && idf.py flash /dev/ttyYOUR_FIRST_ESP_UART && idf.py flash /dev/ttyYOUR_SECOND_ESP_UART`
+5. Run host-side live demo application: `cd host-side && python3 livedemo.py /dev/ttyYOUR_FIRST_ESP_UART /dev/ttyYOUR_SECOND_ESP_UART`
+
 ## Description of files / folders
 
 - `esp_side`: Flashable ESP32-C3 applications and supporting libraries.
@@ -15,6 +35,6 @@
   - `generic_data_capture.py`: Host-side counterpart for ESP-side `generic-eval`. Does one measurement burst.
   - `livedemo.py`: Live demo showing (unfiltered) measured DS-TWR distances based on our timestamps, optionally in comparison with off-the-shelf FTM. Based on `generic-eval`.
   - `random_sampling.py`, `test.py`, `twr.py`, `tuna.py`: Various scripts based on `generic-eval`. Intention of these is to help in finding optimal combination of parameters such as the size of transceived frames.
-  - `n-party-presence.py`: Very chaotic script; subject to be reorganized completely. Counterpart to ESP-side `n-party-presence`. Two modes of invoking: Either give it 1 or more UARTS of live ESPs, plus logfile name suffix; then it'll interactively plot various information depending on chosen configuration constants at beginning of file, as well as log all received data to logfiles for future evaluation. Or give it exactly one logfile (suffix is ignored in that case); then it'll do some statistical evaluation and put results into a `.eval` file for consumption by `n-party-presence-ugly-plotter.py`.
+  - `n-party-presence.py`: Very chaotic script; subject to be reorganized completely. Counterpart to ESP-side `n-party-presence`. Contains evaluation logic described in the paper. Two modes of invoking: Either give it 1 or more UARTS of live ESPs, plus logfile name suffix; then it'll interactively plot various information depending on chosen configuration constants at beginning of file, as well as log all received data to logfiles for future evaluation. Or give it exactly one logfile (suffix is ignored in that case); then it'll do some statistical evaluation and put results into a `.eval` file for consumption by `n-party-presence-ugly-plotter.py`.
   - `n-party-presence-ugly-plotter.py`: Another chaotic script; subject to be reorganized. Give it 1 or more eval files from `n-party-presence.py`; then it'll plot some results and statistical evaluation according to configuration at beginning of script, and optionally also produce CSV files for external plotting (LaTeX for example).
 - `openocd.sh`: Helper script for starting OpenOCD with correct arguments so that breakpoints / watchpoints work out-of-the-box. Only needed for ESP debugging.
