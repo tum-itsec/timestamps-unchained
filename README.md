@@ -5,7 +5,7 @@
 ### Setup
 
 0. Obtain at least two ESP32-C3 boards from Espressif
-1. Clone this repository recursively (`git clone --recurse-submodules`
+1. Clone this repository recursively (`git clone --recurse-submodules`)
 2. (needed only once) Install ESP IDF: `idf/install.sh`
 3. Install necessary host-side packages: `pip install pyserial matplotlib`
 4. (needed every time you open a new terminal): Activate ESP IDF: `source idf/export.sh`
