@@ -12,14 +12,14 @@
 
 ### Live demo for "Authenticated Party Presence" protocol
 
-5. Flash the ESP-side application onto two ESP-32C3's: `cd esp-side/n-party-presence && idf.py flash /dev/ttyYOUR_FIRST_ESP_UART && idf.py flash /dev/ttyYOUR_SECOND_ESP_UART`
+5. Flash the ESP-side application onto two ESP-32C3's: `cd esp-side/n-party-presence && idf.py flash --port /dev/ttyYOUR_FIRST_ESP_UART && idf.py flash --port /dev/ttyYOUR_SECOND_ESP_UART`
 6. Run host-side live demo application - only one ESP needs to be connected to your host: `cd host-side && python3 n-party-presence.py /dev/ttyYOUR_ESP_UART SOME_LOGFILE_SUFFIX`
 
 Note that when increasing physical distance between the ESPs, it'll take up to 30 seconds for that to be reflected in the shown graph, due to the evaluation logic as described in our paper.
 
 ### Live demo visualizing unfiltered data
 
-5. Flash the ESP-side application onto two ESP-32C3's: `cd esp-side/generic-eval && idf.py flash /dev/ttyYOUR_FIRST_ESP_UART && idf.py flash /dev/ttyYOUR_SECOND_ESP_UART`
+5. Flash the ESP-side application onto two ESP-32C3's: `cd esp-side/generic-eval && idf.py flash --port /dev/ttyYOUR_FIRST_ESP_UART && idf.py flash --port /dev/ttyYOUR_SECOND_ESP_UART`
 6. Run host-side live demo application: `cd host-side && python3 livedemo.py /dev/ttyYOUR_FIRST_ESP_UART /dev/ttyYOUR_SECOND_ESP_UART`
 
 ## Description of files / folders
